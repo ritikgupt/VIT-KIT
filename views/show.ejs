@@ -1,0 +1,18 @@
+<%include ./partials/header%>
+<div class="ui main text container segment">
+    <div class="ui huge header"><%=shop.title%></div>
+    <div class="ui attached">
+        <div class="item">
+            <img class="ui centered rounded image" src="<%=shop.image%>">
+            <div class="description">
+                <p><%=shop.body%></p>
+            </div>
+            <a class="ui blue basic button"href="/<%=shop._id%>/edit">Edit</a>
+            <form action="/<%=shop._id%>?_method=Delete" method="POST">
+                <button class="ui red basic button">Delete</button>
+            </form>
+
+        </div>
+</div>
+
+</div>

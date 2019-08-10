@@ -1,0 +1,27 @@
+<%include ./partials/header %>
+<div class="ui main text container">
+    <div class=" ui huge header">Items</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            <%for(var i=0;i<others.length;i++){%>
+            <div class="item">
+                <div class="image">
+                    <img src="<%=others[i].image%>">
+                </div>
+                <div class="content">
+                    <a class="header" href="/shops/<%=others[i]._id %>"><%=others[i].title%></a>
+                    <div class="description">
+                        <p><%=others[i].body%></p>
+                    </div>
+                    <div class="extra">
+                        <a class="ui floated basic violet button" href="/<%=others[i]._id %>">Read More
+                            <i class="right chevron icon"></i></a>
+                    </div>
+                </div>
+            </div>
+            <%}%> 
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer%>

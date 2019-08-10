@@ -1,0 +1,22 @@
+<%include ./partials/header%>
+<div class="ui main text container segment">
+    <div class="ui huge header">Edit <%=shop.title%></div>
+<form class="ui form" action="/<%=shop._id%>?_method=PUT" method="POST">
+<div class="field">
+    <label>Title</label>
+    <input type="text" name="shop[title]" value="<%=shop.title%>">
+    </div>
+    <div class="field">
+        <label>Image</label>
+    <input type="text" name="shop[image]" value="<%=shop.image%>">
+</div>
+<div class="ui form">
+    <div class="field">
+        <label>Shop Content</label>
+        <textarea name="shop[body]"><%=shop.body%></textarea>
+    </div>
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+</form>
+</div>
+<%include ./partials/footer%>

@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>
+            Vit Website
+        </title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    </head>
+    <body>
+        <div class="ui fixed inverted menu">
+            <div class="ui container">
+                <div class="header item"><i class="code icon"></i>Vit Site</div>
+                <a href="/" class="item">Home</a>
+                <%if(!currentUser){%>
+                <a href="/shops/login" class="item">Login</a>
+                <a href="/shops/sign" class="item">SignIn</a>
+                <%} else {%>
+                    <a href="#" class="item">Signed In As <%=currentUser.username%></a>
+                    <a href="/shops/logout" class="item">Logout</a>
+                    <%}%>
+                <a href="/shops/book" class="item">Books</a>
+                <a href="/shops/other" class="item">Others</a>
+                <a href="/shops/sport" class="item">Sports_Equipments</a>
+                <a href="/shops/mattress" class="item">Mattresses</a>
+                <a href="/shops/cycle" class="item">Bicycles</a>
+               
+               
+            </div>
+        </div>
