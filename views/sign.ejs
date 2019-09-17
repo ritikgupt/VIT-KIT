@@ -1,0 +1,99 @@
+<%include ./partials/header %>
+<div  id="f" class="ui main text container segment">
+    <div class="card">
+<form id="d" class="ui form" action="/shops/sign" method="POST">
+    <div class="field">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="abc">
+    </div>
+    <div class="field">
+        <label>Registration_Number</label>
+        <input type="text" name="reg_num" placeholder="18BCE****" required pattern="(?=.*\d)(?=.*[A-Z]).{9}" minlength="9" maxlength="9">
+    </div>
+    <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="abc@yandex.xom">
+    </div>
+    <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Minimum 10 characters" required minlength="10">
+    </div>
+    <div class="field">
+        <label>Room number</label>
+        <input type="text" name="room" placeholder="A-413">
+    </div>
+    <div class="field">
+        <label>Mobile Number</label>
+        <input type="text" name="mobile" placeholder="9999999999" required  pattern="[0-9]{10}" minlength="10" maxlength="10">
+    </div>
+    </div>
+    <button  class="ui blue basic button" type="submit">Submit</button>
+</form>
+</div>
+</div>
+<%include ./partials/footer%>
+<style>
+    *{
+        color:rgb(119, 119, 230);
+    }
+    body{
+        padding-top:8%;
+        background-image:url("http://bensonplanningstudio.co.uk/wp-content/uploads/2016/03/2.jpg");
+        background-size:cover;
+    }
+.card {
+    
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+#f{
+    color:red;
+    width:500px;
+    height:510px;
+
+
+}
+</style>
+<script>
+window.onload=function() {
+  document.forms[0].onsubmit=function() { // first form on page
+    var usernameValue = this.elements[0].value; // first field in form
+    if (usernameValue == "") {
+      alert("Please enter the username");
+      return false;
+    }
+    // var reg_numValue = this.elements[1].value; // second field
+    // if (reg_numValue=="") { // your first option does not have a value 
+    //   alert("Please enter the registration number");
+    //   return false;
+    // }
+    var emailValue = this.elements[2].value; // second field
+    if (emailValue=="") { // your first option does not have a value 
+      alert("Please enter the email");
+      return false;
+    }
+    var roomValue = this.elements[3].value; // second field
+    if (roomValue=="") { // your first option does not have a value 
+      alert("Please enter the room number");
+      return false;
+    }
+    // var mobileValue = this.elements[4].value; // second field
+    // if (mobileValue=="") { // your first option does not have a value 
+    //   alert("Please enter the mobile number");
+    //   return false;
+    // }
+    return true; // allow submission
+  }
+}
+</script>
