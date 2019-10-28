@@ -8,11 +8,7 @@
     </div>
     <div class="field">
         <label>Registration_Number</label>
-<<<<<<< HEAD
         <input type="text" name="reg_num" placeholder="18BCE****" required pattern="(?=.*\d)(?=.*[A-Z]).{9}" minlength="9" maxlength="9">
-=======
-        <input type="text" name="reg_num" placeholder="18BCE****">
->>>>>>> 676f35614a879f7a2a63a090b7b05d088d6a24f2
     </div>
     <div class="field">
         <label>Email</label>
@@ -20,11 +16,8 @@
     </div>
     <div class="field">
         <label>Password</label>
-<<<<<<< HEAD
         <input type="password" name="password" placeholder="Minimum 10 characters" required minlength="10">
-=======
-        <input type="password" name="password" placeholder="**********">
->>>>>>> 676f35614a879f7a2a63a090b7b05d088d6a24f2
+
     </div>
     <div class="field">
         <label>Room number</label>
@@ -32,11 +25,7 @@
     </div>
     <div class="field">
         <label>Mobile Number</label>
-<<<<<<< HEAD
         <input type="text" name="mobile" placeholder="9999999999" required  pattern="[0-9]{10}" minlength="10" maxlength="10">
-=======
-        <input type="text" name="mobile" placeholder="9999999999">
->>>>>>> 676f35614a879f7a2a63a090b7b05d088d6a24f2
     </div>
     </div>
     <button  class="ui blue basic button" type="submit">Submit</button>
@@ -48,11 +37,15 @@
     *{
         color:rgb(119, 119, 230);
     }
-    body{
-        padding-top:8%;
-        background-image:url("http://bensonplanningstudio.co.uk/wp-content/uploads/2016/03/2.jpg");
+    html, body {
+      background-image:url(https://st.depositphotos.com/3008028/3751/i/950/depositphotos_37516417-stock-photo-black-and-white-background.jpg);
         background-size:cover;
-    }
+        background-repeat:no-repeat;
+  padding-top:6%;
+  padding-left:10%;
+  padding-right:10%;
+    font-family: 'Open Sans', sans-serif;
+  }
 .card {
     
   /* Add shadows to create the "card" effect */
@@ -85,19 +78,16 @@ window.onload=function() {
       alert("Please enter the username");
       return false;
     }
-<<<<<<< HEAD
     // var reg_numValue = this.elements[1].value; // second field
     // if (reg_numValue=="") { // your first option does not have a value 
     //   alert("Please enter the registration number");
     //   return false;
     // }
-=======
     var reg_numValue = this.elements[1].value; // second field
     if (reg_numValue=="") { // your first option does not have a value 
       alert("Please enter the registration number");
       return false;
     }
->>>>>>> 676f35614a879f7a2a63a090b7b05d088d6a24f2
     var emailValue = this.elements[2].value; // second field
     if (emailValue=="") { // your first option does not have a value 
       alert("Please enter the email");
@@ -108,19 +98,16 @@ window.onload=function() {
       alert("Please enter the room number");
       return false;
     }
-<<<<<<< HEAD
     // var mobileValue = this.elements[4].value; // second field
     // if (mobileValue=="") { // your first option does not have a value 
     //   alert("Please enter the mobile number");
     //   return false;
     // }
-=======
     var mobileValue = this.elements[4].value; // second field
     if (mobileValue=="") { // your first option does not have a value 
       alert("Please enter the mobile number");
       return false;
     }
->>>>>>> 676f35614a879f7a2a63a090b7b05d088d6a24f2
     return true; // allow submission
   }
 }

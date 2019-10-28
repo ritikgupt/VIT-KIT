@@ -4,15 +4,27 @@
     <div class="ui attached">
         <div class="item">
             <img class="ui centered rounded image" src="<%=shop.image%>">
+            <%console.log(shop.image)%>
             <div class="description">
                 <p><%=shop.body%></p>
+                <h3>Posted by:<%=shop.username%></h3>
+                <%console.log(shop.id)%>
+                <%console.log(currentUser.id)%>
             </div>
-            <a class="ui blue basic button"href="/<%=shop._id%>/edit">Edit</a>
-            <form action="/<%=shop._id%>?_method=Delete" method="POST">
-                <button class="ui red basic button">Delete</button>
-            </form>
-
+            <%if(shop.id===(currentUser.id)|| currentUser.reg_num==='18BCE0154'||currentUser.reg_num==='18BCE0139' || currentUser.reg_num==='18BCE0167'){%>
+                <a class="ui blue basic button"href="/<%=shop._id%>/edit">Edit</a>
+                <form action="/<%=shop._id%>?_method=Delete" method="POST">
+                    <button class="ui red basic button">Delete</button>
+                </form>      
+            <%}else{%>
+                <a class="ui blue basic button" href="/shops/contact">Seller Details</a><%}%>
+                <a class="ui green basic button" href="#">Buy Now</a>
         </div>
 </div>
 
 </div>
+<style>
+body{
+    padding-top:5%;
+}
+</style>

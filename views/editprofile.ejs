@@ -1,0 +1,41 @@
+<%include ./partials/header%>
+<div class="ui main text container segment">
+    <div class="ui huge header">Edit Your Details</div>
+<form class="ui form" action="/shops/profile/:id" method="POST">
+<div class="field">
+    <label>Username</label>
+    <input type="text" name="username" value="<%=currentUser.username%>" >
+    </div>
+    <div class="field">
+        <label>Registration Number</label>
+    <input type="text" name="reg_num" value="<%=currentUser.reg_num%>" required pattern="(?=.*\d)(?=.*[A-Z]).{9}" minlength="9" maxlength="9">
+</div>
+<div class="field">
+        <label>Email</label>
+    <input type="email" name="email" value="<%=currentUser.email%>">
+</div>
+<div class="field">
+        <label>Room Number</label>
+    <input type="text" name="room" value="<%=currentUser.room%>">
+</div>
+<div class="field">
+        <label>Mobile Number</label>
+    <input type="number" name="mobile" value="<%=currentUser.mobile%>" required  pattern="[0-9]{10}" minlength="10" maxlength="10">
+</div>
+<div class="field">
+    <input type="text" name="id" value="<%=user._id%>" id="22">
+</div>
+    <button class="ui button" type="submit">Submit</button>
+</form>
+</div>
+<style>
+    #id{
+        visibility:hidden;
+    }
+    body{
+        background-image:url(https://st.depositphotos.com/3008028/3751/i/950/depositphotos_37516417-stock-photo-black-and-white-background.jpg);
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+</style>
+<%include ./partials/footer%>

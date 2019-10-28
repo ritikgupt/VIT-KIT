@@ -6,6 +6,7 @@ var Other=require("../models/other");
 var Sport=require("../models/sport");
 var Mattress=require("../models/mattress");
 var Cycle=require("../models/cycle");
+var Profile=require("../models/profile");
 // Sport.create({
 //     title: "Badminton Racket",
 //     image: "https://cdn2.expertreviews.co.uk/sites/expertreviews/files/2018/08/yonex_nanoray_20_badminton_racket.jpg?itok=363z22a3",
