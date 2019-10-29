@@ -143,14 +143,24 @@ router.post("/shops/profile/:id",async (req,res,next)=>{
         next(error)
     }
 })
-router.get("/shops/contact",isLoggedIn,function(req,res){
-    Cycle.find({},function(err,cycles){
-        if(err)
-        res.redirect("/shops/login");
-        else
-        res.render("contact",{currentUser:req.user,shops:shops});
+// router.get("/:id/contact",isLoggedIn,function(req,res){
+//     Shop.findById({},function(err,cycles){
+//         if(err)
+//         res.redirect("/shops/login");
+//         else
+//         res.render("contact",{shop:req.body.shop});
+//     })
+// })
+router.get("/:id/contact",isLoggedIn,function(req,res){
+    Shop.findById(req.params.id,function(err,foundShop){
+        if(err){
+            console.log("Error");
+        }
+        else{
+            res.render("contact",{shop:foundShop,currentUser:req.user})
+        }
     })
-})
+})    
 router.get("/shops/profile/:id/newpassword",isLoggedIn,function(req,res){
         res.render("newpassword",{currentUser:req.user});
         // res.redirect("/shops/editprofile/"+ req.user.id)

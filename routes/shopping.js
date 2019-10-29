@@ -23,7 +23,7 @@ router.get("/book",function(req,res){
 router.get("/other",function(req,res){
     Other.find({},function(err,others){
         if(err)
-        console.log("Error!");
+        console.log("Error!"); 
         else
         res.render("other",{others:others,currentUser:req.user});
     })
