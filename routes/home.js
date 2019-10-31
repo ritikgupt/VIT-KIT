@@ -6,7 +6,13 @@ var Seller=require("../models/seller");
 var multer=require("multer");
 var upload=multer({dest:'uploads/'});
 var User = require("../models/user"); 
-
+var cloudinary=require("cloudinary");
+var cloudinary =require("cloudinary");
+cloudinary.config({
+    cloud_name:'dzsms0nne',
+    api_key:'542159551497727',
+    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
+});
 router.get("/",function(req,res){
     console.log(req.user);
   Shop.find({},function(err,shops){
@@ -19,27 +25,23 @@ router.get("/",function(req,res){
   })
 })
 router.post("/",upload.single("shop[image]"),function(req,res){
-    console.log("hello");
-    console.log(req.file);
-    console.log(req.body.shop);
-   Shop.create({
-    title: req.body.shop.title,
-    image: req.file.path,
-    body: req.body.shop.body,
-    id:req.body.shop.id,
-    username:req.body.shop.username,
-    mobile:req.user.mobile,
-    email:req.user.email,
-    room:req.user.room
-})
-// console.log(req.user.mobile);
-// // Seller.create({
-// //     username:req.body.shop.username,
-// //     id:req.body.shop.id,
-// //     mobile:req.user.mobile,
-// //     email:req.user.email,
-// //     room:req.user.room
-// // })
-res.render("contact",{shop:req.body.shop});
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
+        console.log("Error:",err);
+        console.log("Result:",result);
+        Shop.create({
+            title: req.body.shop.title,
+            image: result.secure_url,
+            body: req.body.shop.body,
+            id:req.body.shop.id,
+            username:req.body.shop.username,
+            mobile:req.user.mobile,
+            email:req.user.email, 
+            room:req.user.room,
+            item:req.body.shop.item
+        })
+    })
+
+   
+res.redirect("/shops/new")
 })
 module.exports=router;

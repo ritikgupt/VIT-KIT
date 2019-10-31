@@ -17,12 +17,8 @@ var Sport=require("./models/sport");
 var shoppingRoutes=require("./routes/shopping");
 var authRoutes=require("./routes/auth");
 var homeRoutes=require("./routes/home");
-var cloudinary=require('cloudinary').v2;
-cloudinary.config({
-    cloud_name:'dzsms0nne',
-    api_key:'542159551497727',
-    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
-});
+var cloudinary=require("./handlers/cloudinary");
+// require('dotenv').config()
 var app=a();
 app.use('/uploads',a.static('uploads'));
 app.use(function(req,res,next){

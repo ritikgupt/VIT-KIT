@@ -12,7 +12,8 @@
                 <%console.log(currentUser.id)%>
             </div>
             <%if(shop.id===(currentUser.id)|| currentUser.reg_num==='18BCE0154'||currentUser.reg_num==='18BCE0139' || currentUser.reg_num==='18BCE0167'){%>
-                <a class="ui blue basic button"href="/<%=shop._id%>/edit">Edit</a>
+                <a class="ui blue basic button"href="/<%=shop._id%>/edit">Edit details</a>
+                <a class="ui blue basic button"href="/<%=shop._id%>/change">Change Photo</a>
                 <form action="/<%=shop._id%>?_method=Delete" method="POST">
                     <button class="ui red basic button">Delete</button>
                 </form>      

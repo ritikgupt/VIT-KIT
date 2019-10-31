@@ -7,7 +7,8 @@ var ShopSchema = new c.Schema({
     username:String,
     mobile:Number,
     email:String,
-    room:String
+    room:String,
+    item:String
 })
 module.exports = c.model("Shop", ShopSchema);
 

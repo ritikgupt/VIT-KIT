@@ -13,6 +13,7 @@
     "body-parser": "^1.19.0",
     "cloudinary": "^1.16.0",
     "common": "^0.2.5",
+    "dotenv": "^8.2.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "express-sanitizer": "^1.0.5",

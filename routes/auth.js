@@ -7,8 +7,17 @@ var Other=require("../models/other");
 var Sport=require("../models/sport");
 var Mattress=require("../models/mattress");
 var Cycle=require("../models/cycle");
-var User=require("../models/user");
+var multer=require("multer");
+var upload=multer({dest:'uploads/'});
+var User = require("../models/user"); 
+var cloudinary=require("cloudinary");
+var cloudinary =require("cloudinary");
 var Profile=require("../models/profile");
+cloudinary.config({
+    cloud_name:'dzsms0nne',
+    api_key:'542159551497727',
+    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
+});
 router.get("/shops/new",isLoggedIn,function(req,res){
     res.render("new",{currentUser:req.user});
 })
@@ -165,5 +174,30 @@ router.get("/shops/profile/:id/newpassword",isLoggedIn,function(req,res){
         res.render("newpassword",{currentUser:req.user});
         // res.redirect("/shops/editprofile/"+ req.user.id)
 });
-
+router.get("/:id/change",isLoggedIn,function(req,res){
+    Shop.findById(req.params.id,function(err,foundShop){
+        if(err){
+            console.log("Error");
+        }
+        else{
+            res.render("change",{shop:foundShop,currentUser:req.user})
+        }
+    }) 
+})    
+router.put("/:id/change",upload.single("shop[image]"),function(req,res){
+    console.log("hello");
+    console.log(req.file.path);
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
+        console.log("Error:",err); 
+        console.log("Result:",result);
+        Shop.findByIdAndUpdate(req.params.id,{image:result.secure_url},function(err,updatedShop){
+            if(err){
+                res.redirect("home");
+            }
+            else{
+                res.redirect("/"+req.params.id);
+            }
+        })
+    })
+})
 module.exports=router;

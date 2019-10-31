@@ -1,0 +1,22 @@
+<%include ./partials/header%>
+<div class="ui main text container segment">
+    <div class="ui huge header">Edit <%=shop.title%></div>
+<form class="ui form" action="/<%=shop._id%>/change?_method=PUT" method="POST"  enctype="multipart/form-data">
+<div class="field">
+    <label>Image</label>
+    <input type="file" name="shop[image]" value="<%=shop.title%>">
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+</form>
+</div>
+<style>
+    body{
+        background-image:url(https://st.depositphotos.com/3008028/3751/i/950/depositphotos_37516417-stock-photo-black-and-white-background.jpg);
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+    #ac{
+            visibility:hidden;
+        }
+    </style>
+<%include ./partials/footer%>
