@@ -1,24 +1,26 @@
 <%include ./partials/header %>
 <div class="ui main text container">
-    <div class=" ui huge header">Items</div>
+    <div class=" ui huge header">Others</div>
     <div class="ui top attached segment">
         <div class="ui divided items">
-            <%for(var i=0;i<others.length;i++){%>
+            <%for(var i=0;i<shops.length;i++){%>
+            <%if (shops[i].item==='Other'){%>
             <div class="item">
                 <div class="image">
-                    <img src="<%=others[i].image%>">
+                    <img src="<%=shops[i].image%>">
                 </div>
                 <div class="content">
-                    <a class="header" href="/shops/<%=others[i]._id %>"><%=others[i].title%></a>
+                    <a class="header" href="#"><%=shops[i].title%></a>
                     <div class="description">
-                        <p><%=others[i].body%></p>
+                        <p><%=shops[i].body%></p>
                     </div>
                     <div class="extra">
-                        <a class="ui floated basic violet button" href="/<%=others[i]._id %>">Read More
+                        <a class="ui floated basic violet button" href="/<%=shops[i]._id %>">Read More
                             <i class="right chevron icon"></i></a>
                     </div>
                 </div>
             </div>
+            <%}%>
             <%}%> 
         </div>
     </div>
@@ -26,7 +28,6 @@
 <style>
         body{
     background-image: url(https://st.depositphotos.com/3008028/3751/i/950/depositphotos_37516417-stock-photo-black-and-white-background.jpg);
-    background-repeat:no-repeat;
     background-size:cover;}
     </style>
 <% include ./partials/footer%>

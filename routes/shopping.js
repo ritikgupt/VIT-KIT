@@ -13,43 +13,43 @@ var Profile=require("../models/profile");
 //     body: "Rs 500 only...In perfect condition"
 // })
 router.get("/book",function(req,res){
-    Book.find({},function(err,books){
+    Shop.find({},function(err,shops){
         if(err)
         console.log("Error!");
         else
-        res.render("book",{books:books,currentUser:req.user});
+        res.render("book",{shops:shops,currentUser:req.user});
     })
 })
 router.get("/other",function(req,res){
-    Other.find({},function(err,others){
+    Shop.find({},function(err,shops){
         if(err)
         console.log("Error!"); 
         else
-        res.render("other",{others:others,currentUser:req.user});
+        res.render("other",{shops:shops,currentUser:req.user});
     })
 })
 router.get("/sport",function(req,res){
-    Sport.find({},function(err,sports){
+    Shop.find({},function(err,shops){
         if(err)
         console.log("Error!");
         else
-        res.render("sport",{sports:sports,currentUser:req.user});
+        res.render("sport",{shops:shops,currentUser:req.user});
     })
 })
 router.get("/mattress",function(req,res){
-    Mattress.find({},function(err,mattresses){
+    Shop.find({},function(err,shops){
         if(err)
         console.log("Error!");
         else
-        res.render("mattress",{mattresses:mattresses,currentUser:req.user});
+        res.render("mattress",{shops:shops,currentUser:req.user});
     })
 })
 router.get("/cycle",function(req,res){
-    Cycle.find({},function(err,cycles){
+    Shop.find({},function(err,shops){
         if(err)
         console.log("Error!");
         else
-        res.render("cycle",{cycles:cycles,currentUser:req.user});
+        res.render("cycle",{shops:shops,currentUser:req.user});
     })
 })
 module.exports=router;

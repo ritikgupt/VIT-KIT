@@ -17,7 +17,7 @@ router.get("/",function(req,res){
     console.log(req.user);
   Shop.find({},function(err,shops){
       if(err){
-          console.log("Error!");
+          console.log("Error!"); 
       }
       else{
           res.render("home",{shops:shops,currentUser:req.user});
