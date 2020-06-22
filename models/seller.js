@@ -1,5 +1,5 @@
-var c = require('mongoose');
-var SellerSchema = new c.Schema({
+const c = require('mongoose');
+const SellerSchema = new c.Schema({
   email: String,
   mobile: Number,
   id: String,

@@ -1,4 +1,4 @@
-var cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary');
 
 cloudinary.config({
   cloud_name: 'dzsms0nne',

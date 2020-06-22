@@ -1,5 +1,5 @@
-var c = require('mongoose');
-var CycleSchema = new c.Schema({
+const c = require('mongoose');
+const CycleSchema = new c.Schema({
   title: String,
   image: String,
   body: String,

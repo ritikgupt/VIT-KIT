@@ -1,5 +1,5 @@
-var c = require('mongoose');
-var ProfileSchema = new c.Schema({
+const c = require('mongoose');
+const ProfileSchema = new c.Schema({
   username: String,
   registration: String,
   email: String,

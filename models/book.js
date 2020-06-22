@@ -1,5 +1,5 @@
-var c = require('mongoose');
-var BookSchema = new c.Schema({
+const c = require('mongoose');
+const BookSchema = new c.Schema({
   title: String,
   image: String,
   body: String,

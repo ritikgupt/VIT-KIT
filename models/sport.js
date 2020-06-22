@@ -1,5 +1,5 @@
-var c = require('mongoose');
-var SportSchema = new c.Schema({
+const c = require('mongoose');
+const SportSchema = new c.Schema({
   title: String,
   image: String,
   body: String,

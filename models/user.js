@@ -1,6 +1,6 @@
-var c = require('mongoose');
-var h = require('passport-local-mongoose');
-var UserSchema = new c.Schema({
+const c = require('mongoose');
+const h = require('passport-local-mongoose');
+const UserSchema = new c.Schema({
   username: String,
   password: String,
   email: String,
