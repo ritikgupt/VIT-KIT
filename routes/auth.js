@@ -117,17 +117,6 @@ router.get('/shops/editprofile/:id', function(req, res){
   });
 });
 
-// router.put("/shops/profile",function(req,res){
-//     User.findByIdAndUpdate(req.params.id,req.body.currentUser,function(err,updatedcurrentUser){
-//         if(err){
-//             res.redirect("home");
-//         }
-//         else{
-//             res.redirect("/shops/profile",{currentUser:updatedcurrentUser});
-//         }
-//     })
-// })
-
 router.post('/shops/profile/:id', async(req, res, next) => {
   try {
     let usr2 = await User.findOne({_id: req.body.id});
@@ -136,14 +125,7 @@ router.post('/shops/profile/:id', async(req, res, next) => {
     next(error);
   }
 });
-// router.get("/:id/contact",isLoggedIn,function(req,res){
-//     Shop.findById({},function(err,cycles){
-//         if(err)
-//         res.redirect("/shops/login");
-//         else
-//         res.render("contact",{shop:req.body.shop});
-//     })
-// })
+
 router.get('/:id/contact', isLoggedIn, function(req, res){
   Shop.findById(req.params.id, function(err, foundShop){
     if (err){

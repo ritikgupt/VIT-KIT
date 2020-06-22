@@ -1,4 +1,6 @@
 var a = require('express');
+var compression = require('compression');
+var createError = require('http-errors');
 var b = require('body-parser');
 var c = require('mongoose');
 var passport = require('passport');
@@ -7,10 +9,14 @@ var f = require('method-override');
 var g = require('express-sanitizer');
 var User = require('./models/user');
 var shoppingRoutes = require('./routes/shopping');
+var morgan = require('morgan');
 var authRoutes = require('./routes/auth');
 var homeRoutes = require('./routes/home');
-// require('dotenv').config()
 var app = a();
+app.use(compression());
+var winston = require('./config/winston');
+app.use(morgan('combined', { stream: winston.stream }));
+// require('dotenv').config()
 app.use('/uploads', a.static('uploads'));
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
@@ -46,6 +52,23 @@ passport.deserializeUser(User.deserializeUser());
 app.use(authRoutes);
 app.use('/shops', shoppingRoutes);
 app.use(homeRoutes);
+
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // add this line to include winston logging
+  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error', {err: err});
+});
+
 app.listen('3000', function(){
   console.log('Server has started.');
 });

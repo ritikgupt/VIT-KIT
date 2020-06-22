@@ -1,11 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Shop = require('../models/shop');
-// Sport.create({
-//     title: "Badminton Racket",
-//     image: "https://cdn2.expertreviews.co.uk/sites/expertreviews/files/2018/08/yonex_nanoray_20_badminton_racket.jpg?itok=363z22a3",
-//     body: "Rs 500 only...In perfect condition"
-// })
+
 router.get('/book', function(req, res){
   Shop.find({}, function(err, shops){
     if (err)
