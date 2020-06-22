@@ -3,6 +3,7 @@ var compression = require('compression');
 var createError = require('http-errors');
 var b = require('body-parser');
 var c = require('mongoose');
+var cors = require('cors');
 var passport = require('passport');
 var E = require('passport-local');
 var f = require('method-override');
@@ -52,6 +53,10 @@ passport.deserializeUser(User.deserializeUser());
 app.use(authRoutes);
 app.use('/shops', shoppingRoutes);
 app.use(homeRoutes);
+app.use(cors({
+
+  credentials: true,
+}));
 
 app.use(function(req, res, next) {
   next(createError(404));
