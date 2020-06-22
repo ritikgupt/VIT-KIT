@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var Shop = require('../models/shop');
-var multer = require('multer');
-var upload = multer({dest: 'uploads/'});
-var cloudinary = require('cloudinary');
+const express = require('express');
+const router = express.Router();
+const Shop = require('../models/shop');
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'});
+const cloudinary = require('cloudinary');
 cloudinary.config({
   cloud_name: 'dzsms0nne',
   api_key: '542159551497727',

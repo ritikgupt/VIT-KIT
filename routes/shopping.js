@@ -1,45 +1,66 @@
-var express = require('express');
-var router = express.Router();
-var Shop = require('../models/shop');
+const express = require('express');
+const router = express.Router();
+const Shop = require('../models/shop');
 
-router.get('/book', function(req, res){
-  Shop.find({}, function(err, shops){
-    if (err)
-      console.log('Error!');
-    else
-      res.render('book', {shops: shops, currentUser: req.user});
-  });
+router.get('/book', async(req, res) => {
+  try {
+    await Shop.find({}, (err, shops) => {
+      if (err)
+        console.log('Error!');
+      else
+        res.render('book', {shops: shops, currentUser: req.user});
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
-router.get('/other', function(req, res){
-  Shop.find({}, function(err, shops){
-    if (err)
-      console.log('Error!');
-    else
-      res.render('other', {shops: shops, currentUser: req.user});
-  });
+router.get('/other', async(req, res) => {
+  try {
+    await Shop.find({}, (err, shops) => {
+      if (err)
+        console.log('Error!');
+      else
+        res.render('other', {shops: shops, currentUser: req.user});
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
-router.get('/sport', function(req, res){
-  Shop.find({}, function(err, shops){
-    if (err)
-      console.log('Error!');
-    else
-      res.render('sport', {shops: shops, currentUser: req.user});
-  });
+router.get('/sport', async(req, res) => {
+  try {
+    await Shop.find({}, (err, shops) => {
+      if (err)
+        console.log('Error!');
+      else
+        res.render('sport', {shops: shops, currentUser: req.user});
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
-router.get('/mattress', function(req, res){
-  Shop.find({}, function(err, shops){
-    if (err)
-      console.log('Error!');
-    else
-      res.render('mattress', {shops: shops, currentUser: req.user});
-  });
+router.get('/mattress', async(req, res) => {
+  try {
+    await Shop.find({}, (err, shops) => {
+      if (err)
+        console.log('Error!');
+      else
+        res.render('mattress', {shops: shops, currentUser: req.user});
+    });
+  } catch (e){
+    console.log(e);
+  }
 });
-router.get('/cycle', function(req, res){
-  Shop.find({}, function(err, shops){
-    if (err)
-      console.log('Error!');
-    else
-      res.render('cycle', {shops: shops, currentUser: req.user});
-  });
+router.get('/cycle', async(req, res) => {
+  try {
+    await Shop.find({}, (err, shops) => {
+      if (err)
+        console.log('Error!');
+      else
+        res.render('cycle', {shops: shops, currentUser: req.user});
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
+
 module.exports = router;

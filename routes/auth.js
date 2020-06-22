@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var Shop = require('../models/shop');
-var Profile = require('../models/profile');
-var multer = require('multer');
-var upload = multer({dest: 'uploads/'});
-var User = require('../models/user');
-var cloudinary = require('cloudinary');
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const Shop = require('../models/shop');
+const Profile = require('../models/profile');
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'});
+const User = require('../models/user');
+const cloudinary = require('cloudinary');
 cloudinary.config({
   cloud_name: 'dzsms0nne',
   api_key: '542159551497727',

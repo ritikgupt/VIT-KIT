@@ -1,27 +1,27 @@
-var a = require('express');
-var compression = require('compression');
-var createError = require('http-errors');
-var b = require('body-parser');
-var c = require('mongoose');
-var cors = require('cors');
-var passport = require('passport');
-var E = require('passport-local');
-var f = require('method-override');
-var g = require('express-sanitizer');
-var User = require('./models/user');
-var shoppingRoutes = require('./routes/shopping');
-var morgan = require('morgan');
-var authRoutes = require('./routes/auth');
-var homeRoutes = require('./routes/home');
-var app = a();
+const a = require('express');
+const compression = require('compression');
+const createError = require('http-errors');
+const b = require('body-parser');
+const c = require('mongoose');
+const cors = require('cors');
+const passport = require('passport');
+const E = require('passport-local');
+const f = require('method-override');
+const g = require('express-sanitizer');
+const User = require('./models/user');
+const shoppingRoutes = require('./routes/shopping');
+const morgan = require('morgan');
+const authRoutes = require('./routes/auth');
+const homeRoutes = require('./routes/home');
+const app = a();
 app.use(compression());
-var winston = require('./config/winston');
+const winston = require('./config/winston');
 app.use(morgan('combined', { stream: winston.stream }));
 // require('dotenv').config()
 app.use('/uploads', a.static('uploads'));
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
-  // the above function will help to add currentUser variable to routes
+  // the above function will help to add currentUser constiable to routes
   next();
   // without next() we won't be able to add currentUser to all the routes,it will add to one route and then stop
   // nothing will happen after that so to avoid this next() is used.
@@ -35,7 +35,7 @@ app.use(g());
 app.use(f('_method'));
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
-  // the above function will help to add currentUser variable to routes
+  // the above function will help to add currentUser constiable to routes
   next();
   // without next() we won't be able to add currentUser to all the routes,it will add to one route and then stop
   // nothing will happen after that so to avoid this next() is used.
@@ -71,7 +71,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', {err: err});
+  res.render('not-found-page', {err: err});
 });
 
 app.listen('3000', function(){
