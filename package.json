@@ -5,11 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "pretest": "eslint --ignore-path .gitignore ."
   },
   "author": "Ritik Gutpa",
   "license": "ISC",
   "dependencies": {
+    "babel-eslint": "^10.1.0",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.16.0",
     "common": "^0.2.5",
@@ -32,6 +34,8 @@
     "stream": "0.0.2"
   },
   "devDependencies": {
+    "eslint": "^7.3.0",
+    "eslint-config-strongloop": "^2.1.0",
     "nodemon": "^1.19.1"
   }
 }
