@@ -3,15 +3,14 @@ const router = express.Router();
 const Shop = require('../models/shop');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
-const cloudinary = require('cloudinary');
-cloudinary.config({
-  cloud_name: 'dzsms0nne',
-  api_key: '542159551497727',
-  api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
-});
+const cloudinary = require('../handlers/cloudinary');
+// cloudinary.config({
+//   cloud_name: 'dzsms0nne',
+//   api_key: '542159551497727',
+//   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
+// });
 router.get('/', async(req, res) => {
   try {
-    console.log(req.user);
     await Shop.find({}, (err, shops) => {
       if (err){
         console.log('Error!');
@@ -40,11 +39,10 @@ router.post('/', upload.single('shop[image]'), async(req, res) => {
         item: req.body.shop.item,
       });
     });
+    res.redirect('/shops/new');
   } catch (e) {
+    console.log(e);
     res.json({message: e});
   }
-
-
-  res.redirect('/shops/new');
 });
 module.exports = router;

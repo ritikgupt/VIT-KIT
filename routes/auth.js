@@ -6,12 +6,12 @@ const Profile = require('../models/profile');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const User = require('../models/user');
-const cloudinary = require('cloudinary');
-cloudinary.config({
-  cloud_name: 'dzsms0nne',
-  api_key: '542159551497727',
-  api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
-});
+const cloudinary = require('../handlers/cloudinary');
+// cloudinary.config({
+//   cloud_name: 'dzsms0nne',
+//   api_key: '542159551497727',
+//   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
+// });
 router.get('/shops/new', isLoggedIn, async(req, res) => {
   try {
     res.render('new', {currentUser: req.user});
@@ -28,16 +28,10 @@ router.get('/shops/sign', async(req, res) => {
 });
 router.post('/shops/sign', async(req, res) => {
   try {
-    req.body.username;
-    req.body.password;
-    req.body.reg_num;
-    req.body.room;
-    req.body.mobile;
-    req.body.email;
     await User.register(new User({username: req.body.username, email: req.body.email, room: req.body.room, mobile: req.body.mobile, reg_num: req.body.reg_num}), req.body.password, (err, user) => {
       if (err) {
         console.log(err);
-        return res.redirect('/');
+        res.redirect('/');
       } else {
         passport.authenticate('local')(req, res, () => {
           res.redirect('/');
@@ -45,7 +39,8 @@ router.post('/shops/sign', async(req, res) => {
       }
     });
   } catch (e){
-    res.json({message: e});
+    console.log(e);
+    // res.json({message: e});
   }
 });
 router.get('/shops/login', async(req, res) => {
@@ -58,8 +53,7 @@ router.get('/shops/login', async(req, res) => {
 router.post('/shops/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/shops/login',
-}), async(req, res) => {
-});
+}));
 router.get('/shops/logout', async(req, res) => {
   req.logout();
   res.redirect('/');
@@ -222,4 +216,5 @@ router.put('/:id/change', upload.single('shop[image]'), async(req, res) => {
     res.json({message: e});
   }
 });
+
 module.exports = router;
