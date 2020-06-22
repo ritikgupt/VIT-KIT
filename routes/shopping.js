@@ -11,7 +11,7 @@ router.get('/book', async(req, res) => {
         res.render('book', {shops: shops, currentUser: req.user});
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/other', async(req, res) => {
@@ -23,7 +23,7 @@ router.get('/other', async(req, res) => {
         res.render('other', {shops: shops, currentUser: req.user});
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/sport', async(req, res) => {
@@ -35,7 +35,7 @@ router.get('/sport', async(req, res) => {
         res.render('sport', {shops: shops, currentUser: req.user});
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/mattress', async(req, res) => {
@@ -47,7 +47,7 @@ router.get('/mattress', async(req, res) => {
         res.render('mattress', {shops: shops, currentUser: req.user});
     });
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/cycle', async(req, res) => {
@@ -59,7 +59,7 @@ router.get('/cycle', async(req, res) => {
         res.render('cycle', {shops: shops, currentUser: req.user});
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 

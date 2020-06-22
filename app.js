@@ -1,7 +1,6 @@
 const express = require('express');
 const compression = require('compression');
 const createError = require('http-errors');
-const b = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('passport');
@@ -14,6 +13,8 @@ const morgan = require('morgan');
 const authRoutes = require('./routes/auth');
 const homeRoutes = require('./routes/home');
 const app = express();
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.use(compression());
 const winston = require('./config/winston');
 app.use(morgan('combined', { stream: winston.stream }));
@@ -34,7 +35,8 @@ app.use(function(req, res, next){
   // without next() we won't be able to add currentUser to all the routes,it will add to one route and then stop
   // nothing will happen after that so to avoid this next() is used.
 });
-app.use(b.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 mongoose.set('useCreateIndex', true);

@@ -20,7 +20,7 @@ router.get('/', async(req, res) => {
       }
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.post('/', upload.single('shop[image]'), async(req, res) => {
@@ -41,7 +41,7 @@ router.post('/', upload.single('shop[image]'), async(req, res) => {
       });
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 
 

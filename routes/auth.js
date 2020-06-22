@@ -16,14 +16,14 @@ router.get('/shops/new', isLoggedIn, async(req, res) => {
   try {
     res.render('new', {currentUser: req.user});
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/shops/sign', async(req, res) => {
   try {
     res.render('sign');
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.post('/shops/sign', async(req, res) => {
@@ -45,14 +45,14 @@ router.post('/shops/sign', async(req, res) => {
       }
     });
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/shops/login', async(req, res) => {
   try {
     res.render('login');
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.post('/shops/login', passport.authenticate('local', {
@@ -80,7 +80,7 @@ router.get('/:id', isLoggedIn, async(req, res) => {
       }
     });
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 
 });
@@ -94,7 +94,7 @@ router.get('/:id/edit', isLoggedIn, async(req, res) => {
       }
     });
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.put('/:id', async(req, res) => {
@@ -108,7 +108,7 @@ router.put('/:id', async(req, res) => {
       }
     });
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.delete('/:id', isLoggedIn, async(req, res) => {
@@ -121,7 +121,7 @@ router.delete('/:id', isLoggedIn, async(req, res) => {
       }
     });
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/shops/profile/:id', isLoggedIn, async(req, res) => {
@@ -134,7 +134,7 @@ router.get('/shops/profile/:id', isLoggedIn, async(req, res) => {
     // res.redirect("/shops/editprofile/"+ req.user.id)
     });
   } catch (e){
-    console.log(e);
+    res.json({message: e});
   }
 });
 
@@ -142,7 +142,7 @@ router.get('/shops/redirect', (req, res, next) => {
   try {
     return res.redirect('/shops/editprofile/' + req.user.id);
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/shops/editprofile/:id', async(req, res) => {
@@ -157,7 +157,7 @@ router.get('/shops/editprofile/:id', async(req, res) => {
       }
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 
@@ -180,14 +180,14 @@ router.get('/:id/contact', isLoggedIn, async(req, res) => {
       }
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/shops/profile/:id/newpassword', isLoggedIn, async(req, res) => {
   try {
     res.render('newpassword', {currentUser: req.user});
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.get('/:id/change', isLoggedIn, async(req, res) => {
@@ -200,7 +200,7 @@ router.get('/:id/change', isLoggedIn, async(req, res) => {
       }
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 router.put('/:id/change', upload.single('shop[image]'), async(req, res) => {
@@ -219,7 +219,7 @@ router.put('/:id/change', upload.single('shop[image]'), async(req, res) => {
       });
     });
   } catch (e) {
-    console.log(e);
+    res.json({message: e});
   }
 });
 module.exports = router;
