@@ -9,32 +9,40 @@ cloudinary.config({
   api_key: '542159551497727',
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
-router.get('/', function(req, res){
-  console.log(req.user);
-  Shop.find({}, function(err, shops){
-    if (err){
-      console.log('Error!');
-    } else {
-      res.render('home', {shops: shops, currentUser: req.user});
-    }
-  });
-});
-router.post('/', upload.single('shop[image]'), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
-    console.log('Error:', err);
-    console.log('Result:', result);
-    Shop.create({
-      title: req.body.shop.title,
-      image: result.secure_url,
-      body: req.body.shop.body,
-      id: req.body.shop.id,
-      username: req.body.shop.username,
-      mobile: req.user.mobile,
-      email: req.user.email,
-      room: req.user.room,
-      item: req.body.shop.item,
+router.get('/', async(req, res) => {
+  try {
+    console.log(req.user);
+    await Shop.find({}, (err, shops) => {
+      if (err){
+        console.log('Error!');
+      } else {
+        res.render('home', {shops: shops, currentUser: req.user});
+      }
     });
-  });
+  } catch (e) {
+    console.log(e);
+  }
+});
+router.post('/', upload.single('shop[image]'), async(req, res) => {
+  try {
+    await cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, (err, result) => {
+      console.log('Error:', err);
+      console.log('Result:', result);
+      Shop.create({
+        title: req.body.shop.title,
+        image: result.secure_url,
+        body: req.body.shop.body,
+        id: req.body.shop.id,
+        username: req.body.shop.username,
+        mobile: req.user.mobile,
+        email: req.user.email,
+        room: req.user.room,
+        item: req.body.shop.item,
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
 
 
   res.redirect('/shops/new');
