@@ -1,8 +1,8 @@
-const a = require('express');
+const express = require('express');
 const compression = require('compression');
 const createError = require('http-errors');
 const b = require('body-parser');
-const c = require('mongoose');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('passport');
 const E = require('passport-local');
@@ -13,12 +13,20 @@ const shoppingRoutes = require('./routes/shopping');
 const morgan = require('morgan');
 const authRoutes = require('./routes/auth');
 const homeRoutes = require('./routes/home');
-const app = a();
+const app = express();
 app.use(compression());
 const winston = require('./config/winston');
 app.use(morgan('combined', { stream: winston.stream }));
-// require('dotenv').config()
-app.use('/uploads', a.static('uploads'));
+require('dotenv').config();
+
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
+);
+var connection = mongoose.connection;
+connection.once('open', () => {
+  console.log('MongoDB database connection established successfully');
+});
+app.use('/uploads', express.static('uploads'));
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
   // the above function will help to add currentUser constiable to routes
@@ -27,10 +35,9 @@ app.use(function(req, res, next){
   // nothing will happen after that so to avoid this next() is used.
 });
 app.use(b.urlencoded({ extended: true }));
-c.connect('mongodb://localhost:27017/shopping_list', { useNewUrlParser: true, useFindAndModify: false });
 app.set('view engine', 'ejs');
-app.use(a.static('public'));
-c.set('useCreateIndex', true);
+app.use(express.static('public'));
+mongoose.set('useCreateIndex', true);
 app.use(g());
 app.use(f('_method'));
 app.use(function(req, res, next){

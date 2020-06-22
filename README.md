@@ -1,1 +1,1 @@
-# DBMS_Project
+# VIT KIT
