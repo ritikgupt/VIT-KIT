@@ -4,11 +4,7 @@ const Shop = require('../models/shop');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const cloudinary = require('../handlers/cloudinary');
-// cloudinary.config({
-//   cloud_name: 'dzsms0nne',
-//   api_key: '542159551497727',
-//   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
-// });
+
 router.get('/', async(req, res) => {
   try {
     await Shop.find({}, (err, shops) => {

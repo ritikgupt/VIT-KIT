@@ -20,7 +20,9 @@ router.get('/other', async(req, res) => {
       if (err)
         console.log('Error!');
       else
+      {
         res.render('other', {shops: shops, currentUser: req.user});
+      }
     });
   } catch (e) {
     res.json({message: e});

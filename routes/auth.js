@@ -7,11 +7,16 @@ const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const User = require('../models/user');
 const cloudinary = require('../handlers/cloudinary');
-// cloudinary.config({
-//   cloud_name: 'dzsms0nne',
-//   api_key: '542159551497727',
-//   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
-// });
+
+
+function isLoggedIn(req, res, next){
+  if (req.isAuthenticated()){
+    return next();
+  } else {
+    res.redirect('/shops/login');
+  }
+}
+
 router.get('/shops/new', isLoggedIn, async(req, res) => {
   try {
     res.render('new', {currentUser: req.user});
@@ -40,7 +45,7 @@ router.post('/shops/sign', async(req, res) => {
     });
   } catch (e){
     console.log(e);
-    // res.json({message: e});
+    res.json({message: e});
   }
 });
 router.get('/shops/login', async(req, res) => {
@@ -54,30 +59,8 @@ router.post('/shops/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/shops/login',
 }));
-router.get('/shops/logout', async(req, res) => {
-  req.logout();
-  res.redirect('/');
-});
-function isLoggedIn(req, res, next){
-  if (req.isAuthenticated()){
-    return next();
-  } else
-    res.redirect('/shops/login');
-}
-router.get('/:id', isLoggedIn, async(req, res) => {
-  try {
-    await Shop.findById(req.params.id, (err, foundShop) => {
-      if (err){
-        res.redirect('/');
-      } else {
-        res.render('show', {shop: foundShop, currentUser: req.user});
-      }
-    });
-  } catch (e){
-    res.json({message: e});
-  }
 
-});
+
 router.get('/:id/edit', isLoggedIn, async(req, res) => {
   try {
     await Shop.findById(req.params.id, (err, foundShop) => {
@@ -217,4 +200,22 @@ router.put('/:id/change', upload.single('shop[image]'), async(req, res) => {
   }
 });
 
+router.get('/shops/logout', async(req, res) => {
+  await req.logout();
+  res.redirect('/');
+});
+
+router.get('/:id', isLoggedIn, async(req, res) => {
+  try {
+    await Shop.findById(req.params.id, (err, foundShop) => {
+      if (err){
+        res.redirect('/');
+      } else {
+        res.render('show', {shop: foundShop, currentUser: req.user});
+      }
+    });
+  } catch (e){
+    // res.json({message: e});
+  }
+});
 module.exports = router;
