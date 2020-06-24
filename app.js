@@ -3,6 +3,7 @@ const compression = require('compression');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const port = process.env.PORT || 3000;
 const passport = require('passport');
 const E = require('passport-local');
 const f = require('method-override');
@@ -43,7 +44,7 @@ app.use(function(req, res, next){
   // without next() we won't be able to add currentUser to all the routes,it will add to one route and then stop
   // nothing will happen after that so to avoid this next() is used.
 });
-app.use(require('express-session')({
+app.use(require('cookie-session')({
   secret: 'Let your work make the noise not your mouth.',
   resave: false,
   saveUninitialized: false,
@@ -77,7 +78,7 @@ app.use(function(err, req, res, next) {
   res.render('not-found-page', {err: err});
 });
 
-app.listen('3000', function(){
+app.listen(port, function(){
   console.log('Server has started.');
 });
 
