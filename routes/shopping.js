@@ -19,8 +19,7 @@ router.get('/other', async(req, res) => {
     await Shop.find({}, (err, shops) => {
       if (err)
         console.log('Error!');
-      else
-      {
+      else {
         res.render('other', {shops: shops, currentUser: req.user});
       }
     });
