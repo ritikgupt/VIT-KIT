@@ -27,14 +27,14 @@
             </div>
         <div class="field">
                 <label>Posted By</label>
-                <input type="text" name="shop[username]" value="">
+                <input type="text" name="shop[username]" value="<%=currentUser.username%>">
             </div>
             <div class="field">
                     <label>Upload Image</label>
                     <input type="file" name="shop[image]">
                 </div>    
         <div class="field">
-            <input type="text" id="ac" name="shop[id]" value="">
+            <input type="text" id="ac" name="shop[id]" value="<%=currentUser.id%>">
         </div>
         <button class="ui button" type="submit">Submit</button>
         </div>

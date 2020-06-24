@@ -4,14 +4,16 @@
     <div class="ui attached">
         <div class="item">
             <img class="ui centered rounded image" src="<%=shop.image%>">
-            <%console.log(shop.image)%>
             <div class="description">
                 <p><%=shop.body%></p>
                 <h3>Posted by:<%=shop.username%></h3>
+                <%console.log("df")%>
                 <%console.log(shop.id)%>
+                <%console.log("df")%>
                 <%console.log(currentUser.id)%>
+                <%console.log("df")%>
             </div>
-            <%if(shop.id===(currentUser.id)|| currentUser.reg_num==='18BCE0154'||currentUser.reg_num==='18BCE0139' || currentUser.reg_num==='18BCE0167'){%>
+            <%if(shop.id==(currentUser.id)|| currentUser.reg_num=='18BCE01504'){%>
                 <a class="ui blue basic button"href="/<%=shop._id%>/edit">Edit details</a>
                 <a class="ui blue basic button"href="/<%=shop._id%>/change">Change Photo</a>
                 <form action="/<%=shop._id%>?_method=Delete" method="POST">
@@ -22,5 +24,9 @@
                 <%}%>
         </div>
 </div>
-
+<style>
+   body {
+  padding-top:6%;
+   }
+   </style>
 </div>
