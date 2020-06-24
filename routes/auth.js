@@ -19,7 +19,7 @@ function isLoggedIn(req, res, next){
 
 router.get('/shops/new', isLoggedIn, async(req, res) => {
   try {
-    console.log(req.user)
+    console.log(req.user);
     res.render('new', {currentUser: req.user});
   } catch (e){
     res.json({message: e});
