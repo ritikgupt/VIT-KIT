@@ -1,14 +1,14 @@
 const express = require('express');
 const port = process.env.PORT || 5000;
-// const compression = require('compression');
-// const createError = require('http-errors');
-// const mongoose = require('mongoose');
+const compression = require('compression');
+const createError = require('http-errors');
+const mongoose = require('mongoose');
 
-// const passport = require('passport');
-// const E = require('passport-local');
-// const cors = require('cors');
-// const f = require('method-override');
-// const g = require('express-sanitizer');
+const passport = require('passport');
+const E = require('passport-local');
+const cors = require('cors');
+const f = require('method-override');
+const g = require('express-sanitizer');
 // const User = require('./models/user');
 // const shoppingRoutes = require('./routes/shopping');
 // const morgan = require('morgan');
