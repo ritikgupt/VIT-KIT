@@ -19,12 +19,12 @@ const app = express();
 app.get('/',(req,res)=>{
   res.send('hello');
 })
-// app.use(express.urlencoded({extended: true}));
-// app.use(express.json());
-// app.use(compression());
-// const winston = require('./config/winston');
-// app.use(morgan('combined', { stream: winston.stream }));
-// require('dotenv').config();
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(compression());
+const winston = require('./config/winston');
+app.use(morgan('combined', { stream: winston.stream }));
+require('dotenv').config();
 
 // const uri = process.env.ATLAS_URI;
 // mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
