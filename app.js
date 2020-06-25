@@ -1,13 +1,11 @@
 const express = require('express');
-const port = process.env.PORT || 5000;
 const compression = require('compression');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
-const Shop = require('./models/shop');
-
+const cors = require('cors');
+const port = process.env.PORT || 5000;
 const passport = require('passport');
 const E = require('passport-local');
-const cors = require('cors');
 const f = require('method-override');
 const g = require('express-sanitizer');
 const User = require('./models/user');
@@ -16,35 +14,20 @@ const morgan = require('morgan');
 const authRoutes = require('./routes/auth');
 const homeRoutes = require('./routes/home');
 const app = express();
-
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(compression());
+const winston = require('./config/winston');
+app.use(morgan('combined', { stream: winston.stream }));
+require('dotenv').config();
 
-app.get('/', async(req, res) => {
-  try {
-    await Shop.find({}, (err, shops) => {
-      if (err){
-        console.log('Error!');
-      } else {
-        res.render('home', {shops: shops, currentUser: req.user});
-      }
-    });
-  } catch (e) {
-    res.json({message: e});
-  }
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
+);
+var connection = mongoose.connection;
+connection.once('open', () => {
+  console.log('MongoDB database connection established successfully');
 });
-// const winston = require('./config/winston');
-// app.use(morgan('combined', { stream: winston.stream }));
-// require('dotenv').config();
-
-// const uri = process.env.ATLAS_URI;
-// mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
-// );
-// const connection = mongoose.connection;
-// connection.once('open', () => {
-//   console.log('MongoDB database connection established successfully');
-// });
 app.use('/uploads', express.static('uploads'));
 
 app.use(express.urlencoded({extended: true}));
@@ -79,23 +62,23 @@ app.use(cors({
   credentials: true,
 }));
 
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-//   // add this line to include winston logging
-//   winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  // add this line to include winston logging
+  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
 
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('not-found-page', {err: err});
-// });
+  // render the error page
+  res.status(err.status || 500);
+  res.render('not-found-page', {err: err});
+});
 
-app.listen(port, () => {
+app.listen(port, function(){
   console.log('Server has started.');
 });
 
