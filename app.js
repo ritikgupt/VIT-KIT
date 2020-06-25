@@ -2,10 +2,10 @@ const express = require('express');
 const compression = require('compression');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const port = process.env.PORT || 5000;
 const passport = require('passport');
 const E = require('passport-local');
+const cors = require('cors');
 const f = require('method-override');
 const g = require('express-sanitizer');
 const User = require('./models/user');
@@ -24,7 +24,7 @@ require('dotenv').config();
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
 );
-var connection = mongoose.connection;
+const connection = mongoose.connection;
 connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
@@ -78,7 +78,7 @@ app.use(function(err, req, res, next) {
   res.render('not-found-page', {err: err});
 });
 
-app.listen(port, function(){
+app.listen(port, () => {
   console.log('Server has started.');
 });
 
