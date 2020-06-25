@@ -9,16 +9,13 @@ const E = require('passport-local');
 const cors = require('cors');
 const f = require('method-override');
 const g = require('express-sanitizer');
-// const User = require('./models/user');
-// const shoppingRoutes = require('./routes/shopping');
-// const morgan = require('morgan');
-// const authRoutes = require('./routes/auth');
-// const homeRoutes = require('./routes/home');
+const User = require('./models/user');
+const shoppingRoutes = require('./routes/shopping');
+const morgan = require('morgan');
+const authRoutes = require('./routes/auth');
+const homeRoutes = require('./routes/home');
 const app = express();
 
-app.get('/',(req,res)=>{
-  res.send('hello');
-})
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(compression());
@@ -33,39 +30,39 @@ app.use(compression());
 // connection.once('open', () => {
 //   console.log('MongoDB database connection established successfully');
 // });
-// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 
-// app.use(express.urlencoded({extended: true}));
-// app.use(express.json());
-// app.set('view engine', 'ejs');
-// app.use(express.static('public'));
-// mongoose.set('useCreateIndex', true);
-// app.use(g());
-// app.use(f('_method'));
-// app.use(function(req, res, next){
-//   res.locals.currentUser = req.user;
-//   // the above function will help to add currentUser constiable to routes
-//   next();
-//   // without next() we won't be able to add currentUser to all the routes,it will add to one route and then stop
-//   // nothing will happen after that so to avoid this next() is used.
-// });
-// app.use(require('cookie-session')({
-//   secret: 'Let your work make the noise not your mouth.',
-//   resave: false,
-//   saveUninitialized: false,
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new E(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-// app.use(authRoutes);
-// app.use('/shops', shoppingRoutes);
-// app.use(homeRoutes);
-// app.use(cors({
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+mongoose.set('useCreateIndex', true);
+app.use(g());
+app.use(f('_method'));
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  // the above function will help to add currentUser constiable to routes
+  next();
+  // without next() we won't be able to add currentUser to all the routes,it will add to one route and then stop
+  // nothing will happen after that so to avoid this next() is used.
+});
+app.use(require('cookie-session')({
+  secret: 'Let your work make the noise not your mouth.',
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new E(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+app.use(authRoutes);
+app.use('/shops', shoppingRoutes);
+app.use(homeRoutes);
+app.use(cors({
 
-//   credentials: true,
-// }));
+  credentials: true,
+}));
 
 // app.use(function(req, res, next) {
 //   next(createError(404));
