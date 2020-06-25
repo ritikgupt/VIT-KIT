@@ -5,19 +5,7 @@ const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const cloudinary = require('../handlers/cloudinary');
 
-router.get('/', async(req, res) => {
-  try {
-    await Shop.find({}, (err, shops) => {
-      if (err){
-        console.log('Error!');
-      } else {
-       res.send('hfgh')
-      }
-    });
-  } catch (e) {
-    res.json({message: e});
-  }
-});
+
 router.post('/', upload.single('shop[image]'), async(req, res) => {
   try {
     await cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, (err, result) => {

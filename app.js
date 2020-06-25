@@ -3,6 +3,7 @@ const port = process.env.PORT || 5000;
 const compression = require('compression');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
+const Shop = require('../models/shop');
 
 const passport = require('passport');
 const E = require('passport-local');
@@ -19,6 +20,20 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(compression());
+
+app.get('/', async(req, res) => {
+  try {
+    await Shop.find({}, (err, shops) => {
+      if (err){
+        console.log('Error!');
+      } else {
+        res.render('home', {shops: shops, currentUser: req.user});
+      }
+    });
+  } catch (e) {
+    res.json({message: e});
+  }
+});
 // const winston = require('./config/winston');
 // app.use(morgan('combined', { stream: winston.stream }));
 // require('dotenv').config();
