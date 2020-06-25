@@ -3,7 +3,7 @@ const port = process.env.PORT || 5000;
 const compression = require('compression');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
-const Shop = require('../models/shop');
+const Shop = require('./models/shop');
 
 const passport = require('passport');
 const E = require('passport-local');
