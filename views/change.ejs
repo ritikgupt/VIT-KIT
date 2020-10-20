@@ -3,14 +3,13 @@
     <div class="ui huge header">Edit <%=shop.title%></div>
 <form class="ui form" action="/<%=shop._id%>/change?_method=PUT" method="POST"  enctype="multipart/form-data">
 <div class="field">
-    <label>Image</label>
+    <label>Images</label>
     <input type="file" name="shop[image]" value="<%=shop.title%>">
     </div>
     <button class="ui button" type="submit">Submit</button>
 </form>
 </div>
 <style>
-   
     #ac{
             visibility:hidden;
         }
